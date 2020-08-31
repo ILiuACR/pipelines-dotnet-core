@@ -8,7 +8,7 @@ trigger:
   - feature/*
 
 jobs:
-- job: dotnet_build
+- job: dotnet_build_1
   pool:
     vmImage: 'ubuntu-latest'
 
@@ -18,3 +18,17 @@ jobs:
   steps:
   - script: dotnet build --configuration $(buildConfiguration)
     displayName: 'dotnet build $(buildConfiguration)'
+
+  - script: echo 'this is first job'
+
+- job: dotnet_build_2
+  pool:
+    vmImage: 'ubuntu-latest'
+
+  variables:
+    buildConfiguration: 'Release'
+
+  steps:
+  - script: dotnet build --configuration $(buildConfiguration)
+    displayName: 'dotnet build $(buildConfiguration)'
+  - script: echo 'this is second job'
